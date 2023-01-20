@@ -34,10 +34,7 @@ int main(int ac, char **av)
 	{
 		monty->opcode = command(buffer);
 		if (monty->opcode == NULL)
-		{
-			dprintf(2, "L%d: unknown instruction %s\n", line_number, monty->opcode);
-			exit(EXIT_FAILURE);
-		}
+			continue;
 		code_number = valid(monty, line_number);
 		arg = _arg(buffer);
 		if (code_number == 0)
