@@ -31,7 +31,10 @@ int main(int ac, char **av)
 	{
 		vars.monty->opcode = command(vars.buffer);
 		if (vars.monty->opcode == NULL)
+		{
+			line_number++;
 			continue;
+		}
 		valid(line_number);
 		vars.arg = _arg(vars.buffer);
 		vars.monty->f(&vars.head, line_number);
