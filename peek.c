@@ -10,7 +10,7 @@ int peek(stack_t *top)
 {
 	if (top == NULL)
 	{
-		return INT_MIN;
+		return (INT_MIN);
 	}
-	return top->n
+	return (top->n);
 }

@@ -2,9 +2,10 @@
 #include <stdio.h>
 
 /**
- * sub - subtracts the top element of the stack from the second top element of the stack
+ * sub - subtracts the top element of the stack
+ * from the second top element of the stack
  * @stack: pointer to head
- * @@line_number: line being executed
+ * @line_number: line being executed
  *
  * Return: nothing
  */
@@ -18,6 +19,7 @@ void sub(stack_t **stack, unsigned int line_number)
 
 	int second_top = peek((*top)->next);
 	int top_value = pop(top);
+
 	second_top -= top_value;
-	(*top)-> = second_top;
+	(*top)->n = second_top;
 }
