@@ -24,7 +24,7 @@ char *_arg(char *str)
 	r = e;
 	for (; str[e]; e++)
 	{
-		if (str[e] == '\n')
+		if (str[e] == '\n' || str[e] == ' ' || str[e] == '\t')
 			break;
 		s++;
 	}
