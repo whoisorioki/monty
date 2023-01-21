@@ -10,9 +10,9 @@
 void assign_fun(int check, int l_number)
 {
 	int e = 0;
-	void (*func[7])(stack_t **stack, unsigned int line_number) = {push, 
-		pall, pint, pop, swap, add, nop};
 
+	void (*func[7])(stack_t **stack, unsigned int line_number) = {push,
+		pall, pint, pop, swap, add, nop};
 	while (e < 7)
 	{
 		if (check == e)
