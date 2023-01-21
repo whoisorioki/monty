@@ -3,38 +3,38 @@
 
 /**
  * assign_fun - assigns function to monty
- * @monty: ponter
  * @check: int
- * @line_number: line being executed
+ * @l_number: line being executed
  * Return: Nothing
  */
-void assign_fun(instruction_t *monty, int check, int line_number)
+void assign_fun(int check, int l_number)
 {
 	switch (check)
 	{
 		case 0:
-			monty->f = push;
+			vars.monty->f = push;
 			break;
 		case 1:
-			monty->f = pall;
+			vars.monty->f = pall;
 			break;
 		case 2:
-			monty->f = pint;
+			vars.monty->f = pint;
 			break;
 		case 3:
-			monty->f = pop;
+			vars.monty->f = pop;
 			break;
 		case 4:
-			monty->f = swap;
+			vars.monty->f = swap;
 			break;
 		case 5:
-			monty->f = add;
+			vars.monty->f = add;
 			break;
 		case 6:
-			monty->f = nop;
+			vars.monty->f = nop;
 			break;
 		default:
-			dprintf(2, "L%d: unknown instruction %s\n", line_number, monty->opcode);
+			dprintf(2, "L%d: unknown instruction %s\n", l_number, vars.monty->opcode);
+			free_all();
 			exit(EXIT_FAILURE);
 
 	}
@@ -42,13 +42,12 @@ void assign_fun(instruction_t *monty, int check, int line_number)
 
 /**
  * valid - checks if a command is valid
- * @monty: header of monty stuct
  * @line_number: line being executed
  * Return: int for position of command, -1 if command not found
  */
-int valid(instruction_t *monty, int line_number)
+void valid(int line_number)
 {
-	char *command = monty->opcode;
+	char *command = vars.monty->opcode;
 	char *all_commands[8] = {"push", "pall", "pint",
 		"pop", "swap", "add", "nop", NULL};
 	int e, i, number, check = -1;
@@ -66,7 +65,6 @@ int valid(instruction_t *monty, int line_number)
 			break;
 		}
 	}
-	assign_fun(monty, check, line_number);
-	return (check);
+	assign_fun(check, line_number);
 }
 

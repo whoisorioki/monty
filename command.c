@@ -14,13 +14,13 @@ char *command(char *buffer)
 	{
 		if (buffer[e] == '\n')
 			return (NULL);
-		else if (buffer[e] != ' ')
+		else if (buffer[e] != ' ' && buffer[e] != '\t')
 			break;
 	}
 	i = e;
 	for (s = 0; buffer[e]; e++)
 	{
-		if (buffer[e] == ' ' || buffer[e] == '\n')
+		if (buffer[e] == ' ' || buffer[e] == '\t' || buffer[e] == '\n')
 			break;
 		++s;
 	}

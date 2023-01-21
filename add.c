@@ -12,15 +12,18 @@
  */
 void add(stack_t **stack, unsigned int line_number)
 {
-	if (top->next == NULL)
+	stack_t *ptr;
+
+	if ((*stack)->next == NULL)
 	{
 		dprintf(2, "L%d: can't add, stack too short\n", line_number);
+		free_all();
 		exit(EXIT_FAILURE);
 	}
-	top = top->next;
-	top->n = top->n + (*stack)->n;
-	top->prev = NULL;
-	free(*stack);
-	(*stack) = top;
+	ptr = *stack;
+	(*stack) = (*stack)->next;
+	(*stack)->n = (*stack)->n + ptr->n;
+	(*stack)->prev = NULL;
+	free(ptr);
 }
 

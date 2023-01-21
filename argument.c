@@ -10,16 +10,16 @@ char *_arg(char *str)
 	char *argument;
 	int e = 0, r, i, s = 0;
 
-	while (str[e] == ' ')
+	while (str[e] == ' ' || str[e] == '\t')
 		e++;
 	for (; str[e]; e++)
 	{
 		if (str[e] == '\n')
 			return (NULL);
-		else if (str[e] == ' ')
+		else if (str[e] == ' ' || str[e] == '\t')
 			break;
 	}
-	while (str[e] == ' ')
+	while (str[e] == ' ' || str[e] == '\t')
 		e++;
 	r = e;
 	for (; str[e]; e++)

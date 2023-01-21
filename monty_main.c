@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include "monty.h"
-stack_t *top = NULL;
+globals_t vars;
 
 /**
  * main - checks my code and runs opcodes
@@ -10,41 +10,41 @@ stack_t *top = NULL;
  */
 int main(int ac, char **av)
 {
-	FILE *stream;
-	char *buffer = NULL, *arg;
 	size_t size = 0;
-	int code_number, line_number = 1;
-	instruction_t *monty;
-	stack_t *head;
+	int line_number = 1;
 
-	head =  NULL;
+	vars.buffer = NULL;
+	vars.head =  NULL;
 	if (ac != 2)
 	{
 		dprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	stream = fopen(av[1], "r");
-	if (stream == NULL)
+	vars.stream = fopen(av[1], "r");
+	if (vars.stream == NULL)
 	{
 		dprintf(2, "Error: Can't open file %s\n", av[1]);
 		exit(EXIT_FAILURE);
 	}
-	monty = _malloc(sizeof(instruction_t));
-	while (getline(&buffer, &size, stream) != -1)
+	vars.monty = _malloc(sizeof(instruction_t));
+	while (getline(&vars.buffer, &size, vars.stream) != -1)
 	{
-		monty->opcode = command(buffer);
-		if (monty->opcode == NULL)
+		vars.monty->opcode = command(vars.buffer);
+		if (vars.monty->opcode == NULL)
 			continue;
-		code_number = valid(monty, line_number);
-		arg = _arg(buffer);
-		if (code_number == 0)
-			add_node_beginning(&head, arg, line_number);
-		monty->f(&head, line_number);
+		valid(line_number);
+		vars.arg = _arg(vars.buffer);
+		vars.monty->f(&vars.head, line_number);
 		line_number++;
-		_free(&monty->opcode, &arg);
+		if (vars.arg != NULL)
+		{
+			free(vars.arg);
+			vars.arg = NULL;
+		}
+		free(vars.monty->opcode);
+		vars.monty->opcode = NULL;
 	}
-	free_all(buffer, monty);
-	fclose(stream);
+	free_all();
 	return (0);
 }
 
