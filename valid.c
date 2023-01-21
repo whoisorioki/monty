@@ -9,35 +9,22 @@
  */
 void assign_fun(int check, int l_number)
 {
-	switch (check)
-	{
-		case 0:
-			vars.monty->f = push;
-			break;
-		case 1:
-			vars.monty->f = pall;
-			break;
-		case 2:
-			vars.monty->f = pint;
-			break;
-		case 3:
-			vars.monty->f = pop;
-			break;
-		case 4:
-			vars.monty->f = swap;
-			break;
-		case 5:
-			vars.monty->f = add;
-			break;
-		case 6:
-			vars.monty->f = nop;
-			break;
-		default:
-			dprintf(2, "L%d: unknown instruction %s\n", l_number, vars.monty->opcode);
-			free_all();
-			exit(EXIT_FAILURE);
+	int e = 0;
+	void (*func[7])(stack_t **stack, unsigned int line_number) = {push, 
+		pall, pint, pop, swap, add, nop};
 
+	while (e < 7)
+	{
+		if (check == e)
+		{
+			vars.monty->f = func[e];
+			return;
+		}
+		e++;
 	}
+	dprintf(2, "L%d: unknown instruction %s\n", l_number, vars.monty->opcode);
+	free_all();
+	exit(EXIT_FAILURE);
 }
 
 /**
