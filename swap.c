@@ -18,12 +18,12 @@ void swap(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	temp = *stack;
-	*stack = (*stack)->next;
-	temp->prev = *stack;
-	temp->next = (*stack)->next;
-	(*stack)->next = temp;
-	(*stack)->prev = NULL;
-	vars.top = *stack;
+	temp = vars.top;
+	vars.top = vars.top->next;
+	temp->prev = vars.top;
+	temp->next = vars.top->next;
+	vars.top->next = temp;
+	vars.top->prev = NULL;
+	*stack = vars.top;
 }
 

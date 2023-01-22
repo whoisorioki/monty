@@ -20,11 +20,8 @@ void add(stack_t **stack, unsigned int line_number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	ptr = vars.top;
-	vars.top = vars.top->next;
-	vars.top->n = vars.top->n + ptr->n;
-	vars.top->prev = NULL;
-	*stack = vars.top;
-	free(ptr);
+	ptr = vars.top->next;
+	ptr->n = ptr->n + vars.top->n;
+	pop(stack, line_number);
 }
 
