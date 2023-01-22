@@ -11,9 +11,9 @@ void assign_fun(int check, int l_number)
 {
 	int e = 0;
 
-	void (*func[12])(stack_t **stack, unsigned int line_number) = {push,
-		pall, pint, pop, swap, add, nop, sub, _div, mul, mod, pchar};
-	while (e < 12)
+	void (*func[13])(stack_t **stack, unsigned int line_number) = {push,
+		pall, pint, pop, swap, add, nop, sub, _div, mul, mod, pchar, pstr};
+	while (e < 13)
 	{
 		if (check == e)
 		{
@@ -35,9 +35,9 @@ void assign_fun(int check, int l_number)
 void valid(int line_number)
 {
 	char *command = vars.monty->opcode;
-	char *all_commands[13] = {"push", "pall", "pint",
+	char *all_commands[14] = {"push", "pall", "pint",
 		"pop", "swap", "add", "nop", "sub", "div", "mul", "mod",
-		"pchar", NULL};
+		"pchar", "pstr", NULL};
 	int e, i, number, check = -1;
 
 	if (command[0] == '#')
