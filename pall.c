@@ -12,7 +12,7 @@ void pall(stack_t **stack, unsigned int line_number)
 	stack_t *ptr;
 
 	(void)line_number;
-	ptr = *stack;
+	ptr = vars.top;
 	while (ptr)
 	{
 		dprintf(1, "%d\n", ptr->n);

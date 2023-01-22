@@ -29,6 +29,6 @@ void push(stack_t **stack, unsigned int line_number)
 	new->n = i;
 	new->prev = NULL;
 	new->next = vars.top;
-	*stack = new;
-	vars.top = *stack;
+	vars.top = new;
+	*stack = vars.top;
 }
