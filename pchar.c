@@ -15,7 +15,7 @@ void pchar(stack_t **stack, unsigned int line_number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	else if (vars.top->n > 127)
+	else if (vars.top->n > 127 || vars.top < 0)
 	{
 		dprintf(2, "L%u: cna't pchar, value out of range\n", line_number);
 		free_all();
