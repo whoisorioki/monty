@@ -19,10 +19,10 @@ void free_all(void)
 		free(vars.monty);
 	if (vars.arg)
 		free(vars.arg);
-	while (vars.head)
+	while (vars.top)
 	{
-		ptr = vars.head;
-		vars.head = vars.head->next;
+		ptr = vars.top;
+		vars.top = vars.top->next;
 		free(ptr);
 	}
 }

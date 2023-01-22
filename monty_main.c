@@ -12,9 +12,10 @@ int main(int ac, char **av)
 {
 	size_t size = 0;
 	int line_number = 1;
+	stack_t *head = NULL;
 
 	vars.buffer = NULL;
-	vars.head =  NULL;
+	vars.top =  NULL;
 	if (ac != 2)
 	{
 		dprintf(2, "USAGE: monty file\n");
@@ -37,7 +38,7 @@ int main(int ac, char **av)
 		}
 		valid(line_number);
 		vars.arg = _arg(vars.buffer);
-		vars.monty->f(&vars.head, line_number);
+		vars.monty->f(&head, line_number);
 		line_number++;
 		if (vars.arg != NULL)
 		{

@@ -28,6 +28,7 @@ void push(stack_t **stack, unsigned int line_number)
 	new = _malloc(sizeof(stack_t));
 	new->n = i;
 	new->prev = NULL;
-	new->next = *stack;
+	new->next = vars.top;
 	*stack = new;
+	vars.top = *stack;
 }

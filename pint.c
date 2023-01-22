@@ -15,6 +15,6 @@ void pint(stack_t **stack, unsigned int line_number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	dprintf(1, "%d\n", (*stack)->n);
+	dprintf(1, "%d\n", vars.top->n);
 }
 

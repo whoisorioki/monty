@@ -18,10 +18,11 @@ void pop(stack_t **stack, unsigned int line_number)
 		free_all();
 		exit(EXIT_FAILURE);
 	}
-	ptr = *stack;
-	*stack = (*stack)->next;
-	if (*stack)
-		(*stack)->prev = NULL;
+	ptr = vars.top;
+	vars.top = vars.top->next;
+	if (vars.top)
+		vars.top->prev = NULL;
+	*stack = vars.top;
 	free(ptr);
 }
 
